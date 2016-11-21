@@ -1,0 +1,11 @@
+﻿.itiraf{
+    margin-bottom:30px;
+    /*top:yukarı   left:sol   right:sağ   bottom:aşağı*/
+}
+
+.itiraf span {color:blue;}
+
+.itiraf span:hover{color: orange; cursor:pointer;}
+
+.alkisla{color:green;}
+.kiskisla{color:red;}

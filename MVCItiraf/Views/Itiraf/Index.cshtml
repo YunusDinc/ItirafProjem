@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MVCItiraf.Models.Itiraf>
+@{
+    ViewBag.Title = "Index";
+}
+<h1>İtiraflar</h1>
+ <a href="/Itiraf/ItirafYaz">İtiraf Oluştur</a>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <div class="itiraf">
+            <b>@item.NeKadarOnce</b>
+            <p>@item.Mesaj</p>
+            <i><b>@item.ToplamBegeni</b> oy aldı</i>
+            <span class="alkisla" idsec="@item.ItirafID">Alkışla</span>
+            <span class="kiskisla" idsec="@item.ItirafID">Kışkışla</span>
+        </div>
+    }
+}
+                      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                      <script>
+                          $(document).ready(function () {
+                              $(".alkisla").click(function () {
+                                  var tiklananID = $(this).attr("idsec");
+                                  var _this = $(this);
+                                  $.ajax({
+                                      url: "/Itiraf/Alkisla?hangiitiraf=" + tiklananID,
+                                      success: function (gelenler) {
+                                          alert(gelenler);
+                                          if (gelenler == "Teşekkür ederiz") {
+                                              var b = $(_this).parent().find("i b");
+                                              var eski = parseInt(b.text());
+                                              eski++;
+                                              b.text(eski);
+                                          }
+                                      }
+                                      //    "/Itiraf/Alkisla",
+                                      //    method: "post",
+                                      //data: {hangiitiraf:1}
+                                  });
+                              });
+                          });
+                          $(document).ready(function () {
+                              $(".Kiskisla").click(function () {
+                                  var tiklananID = $(this).attr("idsec");
+                                  var _this = $(this);
+                                  $.ajax({
+                                      url: "/Itiraf/Kiskisla?hangiitiraf=" + tiklananID,
+                                      success: function (gelenler) {
+                                          alert(gelenler);
+                                          if (gelenler == "Teşekkür ederiz") {
+                                              var b = $(_this).parent().find("i b");
+                                              var eski = parseInt(b.text());
+                                              eski++;
+                                              b.text(eski);
+                                          }
+                                      }
+                                      //    "/Itiraf/Alkisla",
+                                      //    method: "post",
+                                      //data: {hangiitiraf:1}
+                                  });
+                              });
+                          });
+
+                      </script>
+
+
